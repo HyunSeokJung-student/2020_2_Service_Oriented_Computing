@@ -1,21 +1,13 @@
 from flask import Flask
-
-app = Flask(__name__)
+from flask import render_template
 
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
-    return "<h1>Hello World!</h1>"
+def get_home():
+    return render_template("home.html")
 
-@app.route("/decline")
-def decline():
-    return "<h3>Hello World!</h3>"
-
-@app.route("/underline")
-def underline():
-    return "<h1><u>Hello World!</u></h1>"
 
 if __name__ == "__main__" :
     app.run(host='0.0.0.0',port=8000)
