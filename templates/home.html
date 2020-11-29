@@ -1,232 +1,71 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
-  <title>example</title>
-  <link rel="stylesheet" href="static/css/bootstrap.css">
-  <link rel="stylesheet" href="static/css/new.css">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>여행 계획 API</title>
+
+        <link rel="stylesheet" href="static/css/bootstrap.css?5">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 
-</head>
-<body>
+        <script src="http://bootstrapk.com/assets/js/ie-emuation-modes-warning.js"></script>
+    </head>
 
-<nav class="navbar navbar-dark  navbar-expand-lg" style="background-color:black">
-  <div class="container">
-            <span class="container">
-                <a class="navbar-brand" href="#">여행 계획 API</a>
+    <body>
+        <nav class="navbar navbar-dark  navbar-expand-lg p-0 m-0" style="background-color:black">
+            <div class="container">
 
-{#                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerUser" aria-controls="navbarResponsive"#}
-{#                        aria-expanded="false" aria-label="Toggle navigation">#}
-{#                        <span class="navbar-user-icon"></span>#}
-{#                </button>#}
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerMain" aria-controls="navbarResponsive"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                <a class="navbar-brand" style="font-size:1.5em" href="/">여행 계획 API</a>
+
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="myNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-            </span>
 
-            <span class="d-block container">
-                <div class="navbar-collapse collapse" id="navbarTogglerMain">
-                        <ul class="navbar-nav ml-auto mr-1">
-                            <li class="nav-item"><a class="nav-link" href="#">API 결과 확인</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">API 명세</a></li>
-                        </ul>
+                <div class="collapse navbar-collapse ml-auto" id="myNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" style="font-size:1em" href="./api-result">API 결과 확인</a></li>
+                        <li class="nav-item"><a class="nav-link" style="font-size:1em" href="./api-documentation">API 명세</a></li>
+                    </ul>
                 </div>
-            </span>
 
-  </div>
-</nav>
+            </div>
+        </nav>
 
-
-<!-- 메 인 -->
-<main role="main">
-  <!-- 캐러셀 -->
-  <!-- 데이터베이스에 해당 이미지를 불러왔을 때, 그 갯수가 0개이면 캐러셀 표시 X -->
-  <!-- 불러온 이미지 갯수에 따라 반복문으로 code내용 작성 -->
-  <div id="mainCarousel" class="carousel slide" data-ride="carousel">
-{#    <ol class="carousel-indicators">#}
-{#      <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>#}
-{#      <li data-target="#mainCarousel" data-slide-to="1"></li>#}
-{#    </ol>#}
-    <div class="carousel-inner">
-      <!-- first carousel item -->
-      <div class="carousel-item active">
-        <img src="static/img/cate1_img1.jpg" class="d-block w-100 h-100" alt="독립 기념관">
-        <div class="carousel-caption d-md-block">
-          <h5>여행 계획 API</h5>
-          <p>API 주제에 대한 설명 </p>
-{#          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#line1Modal">자세히</button>#}
-            <button type="button" class="btn btn-primary"><a href="#"></a>API 결과 확인</button>
-            <button type="button" class="btn btn-primary"><a href="#"></a>API 명세</button>
+        <div class="m-0 bg">
+            <div class="container-fluid m-0 align-items-center justify-content-center" style="display:flex; weight:100%; height:100%; opacity: 1; background-color:rgba(0,0,0,0.5);">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="card-title pb-4 text-white">여행 계획 API</h3>
+                        <p class="card-text pb-2 text-white">여행 시작 날짜, 시각과 여행 종료 날짜, 시각을 입력으로 받으면 입력한 기간 내에 여행 일정표를 출력해주는 API 입니다.</p>
+                        <p class="card-text  pb-4 text-white">사용된 API는 충남 관광 명소 API, 충남 음식점 API, 네이버 driver API가 사용되었습니다.</p>
+                        <button type="button" class="btn btn-primary" onclick="location.href='./api-result'">API 결과 확인</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='./api-documentation'">API 명세</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- second carousel item -->
-{#      <div class="carousel-item">#}
-{#        <img src="static/img/wheel_image.jpg" class="d-block w-100 h-100" alt="최신 휠">#}
-{#        <div class="carousel-caption d-md-block">#}
-{#          <h5>Second slide label</h5>#}
-{#          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>#}
-{#          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#line2Modal">자세히</button>#}
-{#        </div>#}
-{#      </div>#}
-
-      <!-- Modal1 -->
-{#      <div class="modal fade" id="line1Modal" tabindex="-1" role="dialog" aria-labelledby="line1ModalLabel" aria-hidden="true">#}
-{#        <div class="modal-dialog" role="document">#}
-{#          <div class="modal-content">#}
-{#            <div class="modal-header">#}
-{#              <h5 class="modal-title" id="line1ModalLabel">First Line Modal title</h5>#}
-{#              <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-{#                <span aria-hidden="true">&times;</span>#}
-{#              </button>#}
-{#            </div>#}
-{#            <div class="modal-body">#}
-{#              First Line Modal contents#}
-{#            </div>#}
-{#            <div class="modal-footer">#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-{##}
-{#      <!-- Modal2 -->#}
-{#      <div class="modal fade" id="line2Modal" tabindex="-1" role="dialog" aria-labelledby="line2ModalLabel" aria-hidden="true">#}
-{#        <div class="modal-dialog" role="document">#}
-{#          <div class="modal-content">#}
-{#            <div class="modal-header">#}
-{#              <h5 class="modal-title" id="line2ModalLabel">Second Line Modal title</h5>#}
-{#              <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-{#                <span aria-hidden="true">&times;</span>#}
-{#              </button>#}
-{#            </div>#}
-{#            <div class="modal-body">#}
-{#              Second Line Modal contents#}
-{#            </div>#}
-{#            <div class="modal-footer">#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-{##}
-    </div>
-
-    <!-- 이미지가 1장이면 좌우 화살표 없애기 기능 추가 -->
-    <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-
-  </div>
-
-{##}
-{##}
-{#  <div class="mainPageLine container mt-5 mb-5 p-4" style="background-color:#E6E6E6">#}
-{#    <div class="row">#}
-{#      <div class="col-3 mainPageLineDetail align-middle">#}
-{#        <div class="row-cols-3 strong h3">#}
-{#          Line1#}
-{#        </div>#}
-{#        <div class="row-cols-3">#}
-{#          Explain details of your product#}
-{#        </div>#}
-{#      </div>#}
-{##}
-{#      <div class="col-9 productLayout">#}
-{#        <div class="row d-table">#}
-{#          <div class="col-1 prevNextBtn">#}
-{#            <img class="web_custom_arrow" src="static/img/prev_button.png">#}
-{#          </div>#}
-{##}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_1.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_2.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_3.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_3.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_3.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-1 prevNextBtn">#}
-{#            <img class="web_custom_arrow" src="static/img/next-button.png">#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{##}
-{#  <div class="mainPageLine container mt-5 mb-5 p-4" style="background-color:#E6E6E6">#}
-{#    <div class="row">#}
-{#      <div class="col-3 mainPageLineDetail align-middle">#}
-{#        <div class="row-cols-3 strong h3">#}
-{#          Line2#}
-{#        </div>#}
-{#        <div class="row-cols-3">#}
-{#          Explain details of your product#}
-{#        </div>#}
-{#      </div>#}
-{##}
-{#      <div class="col-9 productLayout">#}
-{#        <div class="row d-table">#}
-{#          <div class="col-1 prevNextBtn">#}
-{#            <img class="web_custom_arrow" src="static/img/prev_button.png">#}
-{#          </div>#}
-{##}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_1.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_2.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_3.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_3.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-2 productInfo">#}
-{#            <img class="row-cols-2 productImage" src="static/img/sit_3.jpg">#}
-{#            <p class="row-cols-2 productExplain">20,000원</p>#}
-{#          </div>#}
-{#          <div class="col-1 prevNextBtn">#}
-{#            <img class="web_custom_arrow" src="static/img/next-button.png">#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
 
 
-</main>
+        <div class="my-footer m-0 p-0" style="position:relative; top:0; left:0;">
+                <p>
+                    @Copyright 2020.11.04.
+                </p>
+        </div>
 
-<footer class="container">
-  <p>@Copyright 2020.11.04.</p>
-</footer>
+    <!-- Add jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-<!-- Add jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- Add JS -->
-<script type="text/javascript" src="js/bootstrap.js"></script>
-</body>
+
+    <!-- Add JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+    </body>
 </html>

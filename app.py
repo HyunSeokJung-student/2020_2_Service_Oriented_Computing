@@ -6,12 +6,25 @@ from flask import render_template
 
 
 app = Flask(__name__)
-state = "LoadData"
+state = "ServerOn"
 
 @app.route("/")
 def get_home():
     return render_template("home.html")
+    # return render_template("home.html")
 
+@app.route("/api-result")
+def get_api_result():
+    return render_template("api_result.html")
+
+@app.route("/api-documentation")
+def get_api_documentation():
+    return render_template("documentation.html")
+
+@app.route("/tripplan/days/<string:days>/startTime/<string:startTime>/endTime/<string:endTime>")
+def get_api_result_window(days, startTime, endTime):
+    return "<h1>days: %s<h1><br>" % days + "<h1>startTime: %s<h1><br>" % startTime\
+           + "<h1>endTime: %s<h1>" % endTime
 
 
 

@@ -55,6 +55,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   padding: 0; /* revise */
+  width: 100%;
+  height:100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
@@ -5261,21 +5263,20 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .jumbotron {
-  padding: 5rem 2.5rem;
-  margin-bottom: 2rem;
-  height: 100vh;
-  padding-top: calc(1125 / 2000 * 100%);
-  background-image: url('../img/main.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position:center;
+  /*padding: 5rem 2.5rem;*/
+  /*margin-bottom: 2rem;*/
+  /*height: 100%;*/
+  /*padding-top: calc(1125 / 2000 * 100%);*/
+  /*background-size: cover;*/
+  /*background-repeat: no-repeat;*/
+  /*background-position:center;*/
   /* revise */
-  /* background-attachment: fixed;
-  background-position: center; */
-  /* height: 20vh; */
-  /* background-size: 100% auto; */
-  /* background-color: #e9ecef; */
-  /* border-radius: 0.3rem; */
+   background-attachment: fixed;
+   background-position: center;
+   height: 90vh;
+   background-size: 100% auto;
+   background-color: #e9ecef;
+   border-radius: 0.3rem;
 }
 
 @media (min-width: 576px) {
@@ -6440,25 +6441,35 @@ a.close.disabled {
 
 .carousel-inner {
   position: relative;
-  width: 100%;
-  overflow: hidden;
+  width: 100% !important;
+  overflow: visible;
 }
 
 .carousel-inner::after {
   display: block;
   clear: both;
   content: "";
+  overflow: visible;
 }
 
-/* revise : add content
-.carousel-inner > .item > img { width:100%; height:570px; } */
+/* revise : add content */
+.carousel-inner > .item > img {
+  position:relative;
+  height:100%;
+  width:auto;
+}
 
 .carousel-item {
   position: relative;
-  display: none;
+
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+
   float: left;
   width: 100%;
-  height : 70vh;
+  height : auto;
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -10263,4 +10274,41 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+.my-footer{
+    width : 100% !important;
+    height : 40px;
+    position : absolute;
+    bottom : 0;
+    color : #5eaeff;
+    background-color:#494f54;
+    padding-top: 12px !important;
+    padding-left: 7px !important;
+}
+
+.contents-wrap{
+    width : 100%;
+    min-height : 100%;
+    position : relative;
+    margin : 0px !important;
+    padding: 0px 0px 0px 100px !important;
+}
+
+html{
+  width:100%;
+  height:100%;
+}
+
+.bg{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  background-image:url('/static/img/main_background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 90vh;
+  position:relative;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */

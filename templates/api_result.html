@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>여행 계획 API</title>
+
+        <link rel="stylesheet" href="static/css/bootstrap.css">
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+
+        <script src="http://bootstrapk.com/assets/js/ie-emuation-modes-warning.js"></script>
+
+        <script type="text/javascript" language="JavaScript">
+            function openApiResultWindow(){
+                var daysElement = document.getElementById("days");
+                var days = daysElement.options[daysElement.selectedIndex].value;
+
+                var startTimeHourElement = document.getElementById("startTime-hour");
+                var startTimeMinuteElement = document.getElementById("startTime-minute");
+                var startTime = startTimeHourElement.options[startTimeHourElement.selectedIndex].value
+                    + startTimeMinuteElement.options[startTimeMinuteElement.selectedIndex].value;
+
+                var endTimeHourElement = document.getElementById("endTime-hour");
+                var endTimeMinuteElement = document.getElementById("endTime-minute");
+                var endTime = endTimeHourElement.options[endTimeHourElement.selectedIndex].value
+                    + endTimeMinuteElement.options[endTimeMinuteElement.selectedIndex].value;
+
+                var mCurl = "http://127.0.0.1:5000/tripplan/days/" + days + "/startTime/" + startTime + "/endTime/" + endTime;
+
+                window.open(mCurl);
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark  navbar-expand-lg p-0 m-0" style="background-color:black">
+            <div class="container">
+
+                <a class="navbar-brand" style="font-size:1.5em" href="/">여행 계획 API</a>
+
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="myNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse ml-auto" id="myNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" style="font-size:1em" href="./api-result">API 결과 확인</a></li>
+                        <li class="nav-item"><a class="nav-link" style="font-size:1em" href="./api-documentation">API 명세</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="m-0" style="display:flex; justify-content:center; align-items:center; width:100%; background-color: #EEEEEE; height: 90vh;">
+
+                    <div class="container p-3 pb-lg-5" style="vertical-align:middle; background-size:cover;background-color: white;">
+                    <h2 class="font-weight-bold">API 결과 확인</h2>
+                    <p style="font-size:15px;">아래에 값을 입력해 결과를 확인해보세요</p>
+                        <hr style="border: solid 1px #3c3c3c;">
+
+                    <form action="#" id="api-result-form" accept-charset="UTF-8" method="get">
+
+                        <label class="col-form-label my-1 mr-2" style="font-size:2rem;">머물 기간</label>
+                        <div class="form-row align-items-center mb-3">
+                            <div class="col">
+                                <label style="font-size:1.5rem;">일</label>
+                                <select id="days" class="custom-select custom-select-lg my-1 mr-sm-2" name="days">
+                                    <option selected="selected">01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label class="col-form-label my-1 mr-2" style="font-size:2rem;">시작 기간</label>
+                        <div class="form-row align-items-center mb-3">
+                            <div class="col-6 mb-3">
+                                <label style="font-size:1.5rem;">시</label>
+                                <select id="startTime-hour" class="custom-select custom-select-lg my-1 mr-sm-2" name="selectedStartTime-hour">
+                                        <option selected="selected">11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                </select>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <label style="font-size:1.5rem;">분</label>
+                                <select id="startTime-minute" class="custom-select custom-select-lg my-1 mr-sm-2" name="selectedStartTime-minute">
+                                        <option selected="selected">00</option>
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                        <option>05</option>
+                                        <option>06</option>
+                                        <option>07</option>
+                                        <option>08</option>
+                                        <option>09</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option>
+                                        <option>45</option>
+                                        <option>46</option>
+                                        <option>47</option>
+                                        <option>48</option>
+                                        <option>49</option>
+                                        <option>50</option>
+                                        <option>51</option>
+                                        <option>52</option>
+                                        <option>53</option>
+                                        <option>54</option>
+                                        <option>55</option>
+                                        <option>56</option>
+                                        <option>57</option>
+                                        <option>58</option>
+                                        <option>59</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label class="col-form-label my-1 mr-2" style="font-size:2rem;">종료 기간</label>
+                        <div class="form-row align-items-center mb-3">
+                            <div class="col-6 mb-3">
+                                <label style="font-size:1.5rem;">시</label>
+                                <select id="endTime-hour" class="custom-select custom-select-lg my-1 mr-sm-2" name="selectedEndTime-hour">
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option selected="selected">20</option>
+                                </select>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <label>분</label>
+                                <select id="endTime-minute" class="custom-select custom-select-lg my-1 mr-sm-2" name="selectedEndTime-minute">
+                                        <option>00</option>
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                        <option>05</option>
+                                        <option>06</option>
+                                        <option>07</option>
+                                        <option>08</option>
+                                        <option>09</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option>
+                                        <option>45</option>
+                                        <option>46</option>
+                                        <option>47</option>
+                                        <option>48</option>
+                                        <option>49</option>
+                                        <option>50</option>
+                                        <option>51</option>
+                                        <option>52</option>
+                                        <option>53</option>
+                                        <option>54</option>
+                                        <option>55</option>
+                                        <option>56</option>
+                                        <option>57</option>
+                                        <option>58</option>
+                                        <option selected="selected">59</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark btn-lg btn-block"
+                                onclick="openApiResultWindow();">결과 확인</button>
+                    </form>
+                    </div>
+
+        </div>
+
+        <div class="my-footer m-0 p-1">
+            <p style="display:table-cell;vertical-align:middle;">
+                @Copyright 2020.11.04.
+            </p>
+        </div>
+    </div>
+
+    <!-- Add jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+    <!-- Add JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+    </body>
+</html>
