@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>여행 계획 API</title>
+        <title>여행 계획 API - api 결과 확인</title>
 
         <link rel="stylesheet" href="static/css/bootstrap.css">
 
@@ -31,7 +31,7 @@
                 var endTime = endTimeHourElement.options[endTimeHourElement.selectedIndex].value
                     + endTimeMinuteElement.options[endTimeMinuteElement.selectedIndex].value;
 
-                var mCurl = "http://127.0.0.1:5000/tripplan/days/" + days + "/startTime/" + startTime + "/endTime/" + endTime;
+                var mCurl = "http://127.0.0.1:5000/tripplan/days/" + days + "/between/startTime/" + startTime + "/and/endTime/" + endTime;
 
                 window.open(mCurl);
             }
@@ -254,12 +254,14 @@
 
         </div>
 
-        <div class="my-footer m-0 p-1">
-            <p style="display:table-cell;vertical-align:middle;">
-                @Copyright 2020.11.04.
-            </p>
-        </div>
     </div>
+    <!-- Footer -->
+    <footer class="py-3 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; 2020.11.04</p>
+        </div>
+        <!-- /.container -->
+    </footer>
 
     <!-- Add jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

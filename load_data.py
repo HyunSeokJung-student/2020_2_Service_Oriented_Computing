@@ -67,6 +67,7 @@ class LoaderAndParser :
         lat_list = []
         lng_list = []
         desc_list = []
+        section_id_list = []
 
         for item in item_list:
             item_name = item.find('nm').text
@@ -79,11 +80,17 @@ class LoaderAndParser :
             if(item_name is not None and item_addr is not None and item_lat is not None and item_lng is not None and item_desc is not None):
                 name_list.append(str(item_name).replace(" 사진X","").replace(" 사진x",""))
                 addr_list.append(str(item_addr))
-                lat_list.append(float(item_lat))
+
+                if (str(item_name).replace(" 사진X","").replace(" 사진x","")) == "탕정 둘레길":
+                    lat_list.append(float(36.8191))
+                else:
+                    lat_list.append(float(item_lat))
+
                 lng_list.append(float(item_lng))
                 desc_list.append(re.sub(pattern='<[^/]*>', repl='', string=str(item.find('desc').text)).replace("\"","'"))
+                section_id_list.append(int(self.find_section_id_corresponding_address(str(item_addr))))
 
-        return name_list, addr_list, lat_list, lng_list, desc_list
+        return name_list, addr_list, lat_list, lng_list, desc_list, section_id_list
 
 
     # func 4 : 일부 특정 태그, 문자 제거
@@ -97,5 +104,30 @@ class LoaderAndParser :
         removed_char_data = removed_char_data.replace("<br>", "")
 
         result = removed_char_data
+
+        return result
+
+    # func 5 : address를 보고 해당되는 section_id 반환
+    def find_section_id_corresponding_address(self, address):
+        result = -1
+
+        if ("태안군" in address) or ("서산시" in address):
+            result = 1
+        elif ("당진시" in address) or ("당진군" in address):
+            result = 2
+        elif ("천안시" in address) or ("아산시" in address):
+            result = 3
+        elif ("보령시" in address) or ("홍성군" in address) or ("홍성읍" in address):
+            result = 4
+        elif ("청양군" in address) or ("예산군" in address):
+            result = 5
+        elif "공주시" in address:
+            result = 6
+        elif "서천군" in address:
+            result = 7
+        elif "부여군" in address:
+            result = 8
+        elif ("논산시" in address) or ("남산리" in address) or ("계룡시" in address) or ("금산군" in address) or ("계롱시"):
+            result = 9
 
         return result
