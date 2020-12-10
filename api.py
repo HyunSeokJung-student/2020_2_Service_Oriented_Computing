@@ -9,7 +9,7 @@ from collections import OrderedDict
 
 class API:
 
-    connection = pymysql.connect(host='localhost', port=3306, user='root', passwd='000000', db='tripplan', charset='utf8')
+    connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan', charset='utf8')
 
     # variable declaration
     # 실패 0, 성공 1

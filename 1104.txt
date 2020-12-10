@@ -1,9 +1,0 @@
-Application key
-
-Application Name: TripPlanAPI
-Client ID(X-NCP-APIGW-API-KEY-ID): rpqkw9qi0l
-Client Secret(X-NCP-APIGW-API-KEY): VayHSWv7FXwMGnsIwMRdK7tnGmLu4rO1NUhhsofF
-
-주소전환: http://www.dawuljuso.com/
-
-curl request: https://curl.trillworks.com/
