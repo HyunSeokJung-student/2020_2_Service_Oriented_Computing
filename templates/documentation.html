@@ -10,7 +10,7 @@
   <title>여행 계획 API - api 명세</title>
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="static/css/bootstrap.css?2">
+  <link rel="stylesheet" href="static/css/bootstrap.css">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -90,7 +90,7 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mb-lg-5">
               <p>
                   <pre class="w-100"><code>curl --request GET \
---url "http://ip_name:port_num/tripplan/days/{days}/between/startTime/{startTime}/and/endTime/{endTime}"</code></pre>
+--url "http://54.180.90.91:5000/tripplan/days/{days}/between/startTime/{startTime}/and/endTime/{endTime}"</code></pre>
               </p>
           </div>
           <h3>요청 파라미터</h3>
@@ -239,7 +239,7 @@
               </table>
           </div>
 
-          <h3>result-tripplan-tourList 중 <strong>type = tour</strong></h3>
+          <h3>result-tripplan-tourList 중 <strong>type = tour or meal</strong></h3>
           <div class="table-responsive">
               <table class="table table-striped table-sm">
                   <thead>
@@ -258,7 +258,7 @@
                     <tr>
                         <td>type</td>
                         <td>string</td>
-                        <td>현재 JsonObject가 방문할 장소 정보(tour)인지 장소간 이동 정보(move)인지 표시</td>
+                        <td>현재 JsonObject가 방문할 관광명소 정보(tour)인지 음식점 정보(meal)인지 장소간 이동 정보(move)인지 표시</td>
                     </tr>
                     <tr>
                         <td>name</td>
@@ -318,7 +318,7 @@
                     <tr>
                         <td>type</td>
                         <td>string</td>
-                        <td>현재 JsonObject가 방문할 장소 정보(tour)인지 장소간 이동 정보(move)인지 표시</td>
+                        <td>현재 JsonObject가 방문할 관광명소 정보(tour)인지 음식점 정보(meal)인지 장소간 이동 정보(move)인지 표시</td>
                     </tr>
                     <tr>
                         <td>distance</td>
@@ -341,7 +341,7 @@
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mb-lg-5">
               <p>
                   <pre class="w-100"><code># python
-          response = requests.get("http://ip_name:port_num/tripplan/days/2/between/startTime/1153/and/endTime/1633")
+          response = requests.get("http://54.180.90.91:5000/tripplan/days/02/between/startTime/1153/and/endTime/1633")
           jo = json.loads(response.text)
           print(jo)</code></pre>
               </p>
