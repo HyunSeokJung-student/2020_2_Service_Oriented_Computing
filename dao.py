@@ -4,7 +4,7 @@ import requests
 
 class Dao :
 
-    connection = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='tripplan', charset='utf8')
+    connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan', charset='utf8')
 
     def __init__(self):
         pass
