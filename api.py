@@ -27,7 +27,7 @@ class API:
     # 여행 내 방문한 음식점 수
     totalRestaurantsCnt = 0
     # 전체 이동 거리 (meters)
-    totalDistance = 0
+    totalMoveDistance = 0
     # 전체 이동 시간 (milliseconds)
     totalMoveDuration = 0
     # 전체 관광 시간 (milliseconds)
@@ -38,7 +38,7 @@ class API:
             [0, 0, 0, 0],  # secondDay
             [0, 0, 0, 0]]  # thirdDay
 
-    # id, name, lat, lng
+    # id, name, lat, lng, addr, description
     location = [  # firstDay
         [[0],  # Tour1
          [0],  # lunch
@@ -61,36 +61,42 @@ class API:
          [0],  # dinner
          [0]]]  # Tour4
 
-    # isStart, distance, duration, departureTime, arrivalTime
+    # isStart, distance, duration, startTime, endTime
     moveInfo = [  # firstDay
-        [[0],  # Tour1 - lunch
-         [0],  # lunch - Tour2
-         [0],  # Tour2 - Tour3
-         [0],  # Tour3 - dinner
-         [0]],  # dinner - Tour4
+        [[0, 0, 0, 0, 0],  # Tour1 - lunch
+         [0, 0, 0, 0, 0],  # lunch - Tour2
+         [0, 0, 0, 0, 0],  # Tour2 - Tour3
+         [0, 0, 0, 0, 0],  # Tour3 - dinner
+         [0, 0, 0, 0, 0]],  # dinner - Tour4
         # secondDay
-        [[0],  # Tour1 - lunch
-         [0],  # lunch - Tour2
-         [0],  # Tour2 - Tour3
-         [0],  # Tour3 - dinner
-         [0]],  # dinner - Tour4
+        [[0, 0, 0, 0, 0],  # Tour1 - lunch
+         [0, 0, 0, 0, 0],  # lunch - Tour2
+         [0, 0, 0, 0, 0],  # Tour2 - Tour3
+         [0, 0, 0, 0, 0],  # Tour3 - dinner
+         [0, 0, 0, 0, 0]],  # dinner - Tour4
         # thirdDay
-        [[0],  # Tour1 - lunch
-         [0],  # lunch - Tour2
-         [0],  # Tour2 - Tour3
-         [0],  # Tour3 - dinner
-         [0]]]  # dinner - Tour4
+        [[0, 0, 0, 0, 0],  # Tour1 - lunch
+         [0, 0, 0, 0, 0],  # lunch - Tour2
+         [0, 0, 0, 0, 0],  # Tour2 - Tour3
+         [0, 0, 0, 0, 0],  # Tour3 - dinner
+         [0, 0, 0, 0, 0]]]  # dinner - Tour4
 
     def __init__(self, days, startTime, endTime):
-        self.days = int(days)
-        self.startTime = int(startTime)
-        self.endTime = int(endTime)
+        try:
+            self.days = int(days)
+            self.startTime = int(startTime)
+            self.endTime = int(endTime)
+        except:
+            self.days = 1
+            self.startTime = 2059
+            self.endTime = 1100
 
         # Section, Direction, Attraction, Restaurant
         self.SDAR = [[0, 0, 0, 0],  # firstDay
                 [0, 0, 0, 0],  # secondDay
                 [0, 0, 0, 0]]  # thirdDay
 
+        # id, name, lat, lng, addr, description
         self.location = [  # firstDay
             [[0],  # Tour1
              [0],  # lunch
@@ -113,36 +119,40 @@ class API:
              [0],  # dinner
              [0]]]  # Tour4
 
+        # isStart, distance, duration, startTime, endTime
         self.moveInfo = [  # firstDay
-            [[0],  # Tour1 - lunch
-             [0],  # lunch - Tour2
-             [0],  # Tour2 - Tour3
-             [0],  # Tour3 - dinner
-             [0]],  # dinner - Tour4
+            [[0, 0, 0, 0, 0],  # Tour1 - lunch
+             [0, 0, 0, 0, 0],  # lunch - Tour2
+             [0, 0, 0, 0, 0],  # Tour2 - Tour3
+             [0, 0, 0, 0, 0],  # Tour3 - dinner
+             [0, 0, 0, 0, 0]],  # dinner - Tour4
             # secondDay
-            [[0],  # Tour1 - lunch
-             [0],  # lunch - Tour2
-             [0],  # Tour2 - Tour3
-             [0],  # Tour3 - dinner
-             [0]],  # dinner - Tour4
+            [[0, 0, 0, 0, 0],  # Tour1 - lunch
+             [0, 0, 0, 0, 0],  # lunch - Tour2
+             [0, 0, 0, 0, 0],  # Tour2 - Tour3
+             [0, 0, 0, 0, 0],  # Tour3 - dinner
+             [0, 0, 0, 0, 0]],  # dinner - Tour4
             # thirdDay
-            [[0],  # Tour1 - lunch
-             [0],  # lunch - Tour2
-             [0],  # Tour2 - Tour3
-             [0],  # Tour3 - dinner
-             [0]]]  # dinner - Tour4
+            [[0, 0, 0, 0, 0],  # Tour1 - lunch
+             [0, 0, 0, 0, 0],  # lunch - Tour2
+             [0, 0, 0, 0, 0],  # Tour2 - Tour3
+             [0, 0, 0, 0, 0],  # Tour3 - dinner
+             [0, 0, 0, 0, 0]]]  # dinner - Tour4
 
 
     def analyseInput(self):
         if ((self.days == 1) and (self.startTime >= self.endTime)):
             self.code = 0
             self.message = 'Input Form Error'
-        elif ((self.startTime % 100 >= 60) and (self.startTime < 1100) and (self.startTime) >= 2000):
+        elif ((self.days < 1) or (self.days > 3)):
             self.code = 0
-            self.message = 'StartTime Input Form Error'
-        elif ((self.endTime % 100 >= 60) and (self.endTime < 1200) and (self.endTime >= 2100)):
+            self.message = 'Input(days) Form Error'
+        elif ((self.startTime % 100 >= 60) or (self.startTime < 1100) or (self.startTime) >= 2000):
             self.code = 0
-            self.message = 'EndTime Input Form Error'
+            self.message = 'Input(startTime) Form Error'
+        elif ((self.endTime % 100 >= 60) or (self.endTime < 1200) or (self.endTime >= 2100)):
+            self.code = 0
+            self.message = 'Input(endTime) Form Error'
         else:
             if (self.days >= 3):
                 self.SDAR[2][2] = 4
@@ -348,6 +358,9 @@ class API:
                         idList.insert(len(idList), 0)
                         distanceList.insert(len(distanceList), 0)
 
+                        idList.insert(len(idList), 0)
+                        distanceList.insert(len(distanceList), 0)
+
                     idList.insert(len(idList), 0)
                     distanceList.insert(len(distanceList), 0)
             else:
@@ -462,17 +475,15 @@ class API:
         for i in range(6):
             self.location[today][i][0] = idList[i]
 
-        for day in range(3):
-            for i in range(6):
-                if (self.location[day][i][0]):
-                    if ((i == 1) or (i == 4)):
-                        sql = "select name, lat, lng from tripplan.restaurant where id = {};".format(self.location[day][i][0])
-                        cursor.execute(sql)
-                    else:
-                        sql = "select name, lat, lng from tripplan.attractions where id = {};".format(self.location[day][i][0])
-                        cursor.execute(sql)
+            if (self.location[today][i][0]):
+                if ((i == 1) or (i == 4)):
+                    sql = "select name, lat, lng, addr, description from tripplan.restaurant where id = {};".format(self.location[today][i][0])
+                    cursor.execute(sql)
+                else:
+                    sql = "select name, lat, lng, addr, description from tripplan.attractions where id = {};".format(self.location[today][i][0])
+                    cursor.execute(sql)
 
-                    self.location[day][i].extend(list(cursor.fetchone()))
+                self.location[today][i].extend(list(cursor.fetchone()))
 
         cursor.close()
 
@@ -506,14 +517,17 @@ class API:
         cursor.close()
 
 
-    def getDistance(self, startX, startY, goalX, goalY):
+    def makeMoveInfo(self, today, index):
+
+        self.moveInfo[today][index][0] = 1
+
         headers = {
             'X-NCP-APIGW-API-KEY-ID': 'rpqkw9qi0l',
             'X-NCP-APIGW-API-KEY': 'VayHSWv7FXwMGnsIwMRdK7tnGmLu4rO1NUhhsofF',
         }
 
-        start = startX + ',' + startY
-        goal = goalX + ',' + goalY
+        start = str(self.location[today][index][3]) + ',' + str(self.location[today][index][2])
+        goal = str(self.location[today][index+1][3]) + ',' + str(self.location[today][index+1][2])
 
         params = (
             ('start', start),
@@ -521,12 +535,37 @@ class API:
             ('option', 'trafast'),
         )
 
-        response = requests.get('https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving',
-                                headers=headers, params=params)
+        response = requests.get('https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving', headers=headers, params=params)
 
         JSONObject = json.loads(response.text)
 
-        return JSONObject['route']['trafast'][0]['summary']['distance']
+        distance = int(JSONObject['route']['trafast'][0]['summary']['distance'])
+        duration = int(JSONObject['route']['trafast'][0]['summary']['duration'])
+
+        self.moveInfo[today][index][1] = distance
+        self.moveInfo[today][index][2] = duration
+
+        if (index == 0):
+            standardTime = 1300
+        elif (index == 1):
+            standardTime = 1400
+        elif (index == 2):
+            standardTime = 1600
+        elif (index == 3):
+            standardTime = 1800
+        else:
+            standardTime = 1900
+
+        hour = self.moveInfo[today][index][2] // 3600000
+        min = self.moveInfo[today][index][2] % 3600000 // 60000
+
+        deductionTime = ((hour * 100) + min) // 2
+
+        self.moveInfo[today][index][3] = standardTime - deductionTime
+        self.moveInfo[today][index][4] = standardTime + deductionTime
+
+        if ((self.moveInfo[today][index][3] % 100) > 40):
+            self.moveInfo[today][index][3] -= 40
 
 
     def makeSummary(self):
@@ -538,27 +577,32 @@ class API:
                     else:
                         self.totalAttractionsCnt += 1
             for i in range(5):  # moveInfo
-                if (self.moveInfo[day][i][0]):
-                    self.totalDistance += self.moveInfo[day][i][1]
-                    self.totalMoveDuration += self.moveInfo[day][i][2]
+                self.totalMoveDistance += self.moveInfo[day][i][1]
+                self.totalMoveDuration += self.moveInfo[day][i][2]
 
         totalDuration = 0
-        #if (self.days == 1):
-        #    totalDuration += (self.endTime - self.startTime)
-        #else:
-        #    if (days == 2):
-        #        totalDuration += 1000
-        #    totalDuration += (2100 - self.startTime)
-        #    totalDuration += (self.endTime - 1100)
+        if (self.days == 1):
+            totalDuration += (self.endTime - self.startTime)
+        else:
+            if (self.days == 3):
+                totalDuration += 1000
+            totalDuration += (2100 - self.startTime)
+            totalDuration += (self.endTime - 1100)
 
-        #self.totalTourDuration = totalDuration - self.totalMoveDuration
-        # 시간으로 바꿔주기
+        hour = totalDuration // 100
+        min = totalDuration % 100
+
+        if (min > 40):
+            min -= 40
+
+        totalDuration = ((hour * 3600) + (min * 60)) * 1000
+        self.totalTourDuration = totalDuration - self.totalMoveDuration
 
         summary = {
             'days': self.days,
             'totalAttractionsCnt': self.totalAttractionsCnt,
             'totalRestaurantsCnt': self.totalRestaurantsCnt,
-            'totalDistance': self.totalDistance,
+            'totalMoveDistance': self.totalMoveDistance,
             'totalMoveDuration': self.totalMoveDuration,
             'totalTourDuration': self.totalTourDuration
         }
@@ -569,11 +613,84 @@ class API:
         tripplan = []
 
         for today in range(self.days):
-            dict = {
+            num = 1
+            tourList = []
+
+            cursor = self.connection.cursor()
+
+            sql = "select section_name from tripplan.section where section_id = {};".format(self.SDAR[today][0])
+            cursor.execute(sql)
+
+            section = list(cursor.fetchone())[0]
+
+            cursor.close()
+
+            for i in range(5):
+                if (self.location[today][i][0]):
+                    if (self.location[today][i+1][0]):
+                        self.makeMoveInfo(today, i)
+
+            for i in range(6):
+                visitStart = 1100
+                visitEnd = 2059
+
+                if (self.location[today][i][0]):
+                    if ((i == 1) or (i == 4)):
+                        type = 'meal'
+                    else:
+                        type = 'tour'
+
+                    if (i == 5):
+                        isEnd = True
+                    elif (self.location[today][i+1][0]):
+                        isEnd = False
+                    else:
+                        isEnd = True
+
+                    if (i != 5):
+                        visitEnd = self.moveInfo[today][i][3]
+                    if (i != 0):
+                        visitStart = self.moveInfo[today][i-1][4]
+
+                    if ((today == 0) and (num == 1)):
+                        visitStart = self.startTime
+                    if ((today == self.days - 1) and isEnd):
+                        visitEnd = self.endTime
+
+                    tourDict = {
+                        'num': num,
+                        'type': type,
+                        'name': self.location[today][i][1],
+                        'lat': self.location[today][i][2],
+                        'lng': self.location[today][i][3],
+                        'address': self.location[today][i][4],
+                        'description': self.location[today][i][5],
+                        'visitStart': visitStart,
+                        'visitEnd': visitEnd
+                    }
+
+                    tourList.append(tourDict)
+                    num += 1
+
+                    for i in range(5):
+                        if (self.moveInfo[today][i][0]):
+                            moveDict = {
+                                'num': num,
+                                'type': 'move',
+                                'distance': self.moveInfo[today][i][1],
+                                'duration': self.moveInfo[today][i][2]
+                            }
+                            tourList.append(moveDict)
+                            self.moveInfo[today][i][0] = 0
+                            num += 1
+                            break
+
+            tripplanDict = {
                 'day': today + 1,
-                'section': self.SDAR[today][0]
+                'section': section,
+                'tourList': tourList
             }
-            tripplan.append(dict)
+            tripplan.append(tripplanDict)
 
         return tripplan
 
@@ -609,10 +726,8 @@ class API:
 
             # 최종 response
             response['result'] = {
-                'summary': self.makeSummary(),
                 'tripplan': self.makeTripPlan(),
-                # test
-                'test': self.location
+                'summary': self.makeSummary()
             }
 
         JSONObject = json.dumps(response, ensure_ascii=False, indent=4, separators=(', ', ': '))
