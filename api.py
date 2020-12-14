@@ -91,8 +91,6 @@ class API:
             self.startTime = 2059
             self.endTime = 1100
 
-        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan', charset='utf8')
-
         # Section, Direction, Attraction, Restaurant
         self.SDAR = [[0, 0, 0, 0],  # firstDay
                 [0, 0, 0, 0],  # secondDay
@@ -286,7 +284,7 @@ class API:
         if (isDirectionChanged):
             attractionNum += extraNum
 
-        self.connection.ping(True)
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan', charset='utf8')
 
         cursor = self.connection.cursor()
 
@@ -490,11 +488,12 @@ class API:
                 self.location[today][i].extend(list(cursor.fetchone()))
 
         cursor.close()
+        self.connection.close()
 
 
     def selectRestaurant(self, today, idList, distanceList, index, farIndex, closeIndex): # farIndex, closeIndex 中 emptyIndex = -1
 
-        self.connection.ping(True)
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan', charset='utf8')
 
         cursor = self.connection.cursor()
 
@@ -521,6 +520,7 @@ class API:
         distanceList.insert(index, list(sqlResult)[1])
 
         cursor.close()
+        self.connection.close()
 
 
     def makeMoveInfo(self, today, index):
@@ -618,11 +618,12 @@ class API:
     def makeTripPlan(self):
         tripplan = []
 
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan',
+                                          charset='utf8')
+
         for today in range(self.days):
             num = 1
             tourList = []
-
-            self.connection.ping(True)
 
             cursor = self.connection.cursor()
 
@@ -632,6 +633,7 @@ class API:
             section = list(cursor.fetchone())[0]
 
             cursor.close()
+
 
             for i in range(5):
                 if (self.location[today][i][0]):
@@ -699,6 +701,8 @@ class API:
                 'tourList': tourList
             }
             tripplan.append(tripplanDict)
+
+        self.connection.close()
 
         return tripplan
 

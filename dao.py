@@ -7,8 +7,7 @@ class Dao :
     connection = None
 
     def __init__(self):
-        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan',
-                                     charset='utf8')
+        pass
 
 
 
@@ -16,7 +15,8 @@ class Dao :
     # func 1 : 현재 테이블 tablename의 id 컬럼에 들어가 있는 값 중 가장 큰 id 값 반환
     def select_table_max_id(self, tablename):
 
-        self.connection.ping(True)
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan',
+                                          charset='utf8')
 
         cursor = self.connection.cursor()
 
@@ -30,6 +30,7 @@ class Dao :
             max_id = 0
 
         cursor.close()
+        self.connection.close()
 
         return max_id
 
@@ -38,7 +39,8 @@ class Dao :
     def insert_data_to_table(self, tablename, name, addr, lat, lng, desc, section_id):
         current_id = self.select_table_max_id(tablename) + 1
 
-        self.connection.ping(True)
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan',
+                                          charset='utf8')
 
         cursor = self.connection.cursor()
 
@@ -48,6 +50,7 @@ class Dao :
         cursor.execute(sql)
 
         cursor.close()
+        self.connection.close()
 
 
     # func 3 : 테이블 tablename (attractions || restaurant) 에 list로 받은 data 전부 추가
@@ -61,7 +64,8 @@ class Dao :
 
     # func 4 : 테이블 attractions_near_section 에 인접 section의 center 와 현재 관광지(attraction) 까지의 이동 거리와 시간 입력
     def insert_data_to_attractions_near_section(self):
-        self.connection.ping(True)
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan',
+                                          charset='utf8')
 
         cursor_select = self.connection.cursor()
 
@@ -128,10 +132,17 @@ class Dao :
                 cursor_insert.execute(sql_insert)
 
                 self.connection.commit()
+                cursor_insert.close()
+
+            cursor_duplicate_check.close()
+            cursor_select.close()
+            self.connection.close()
+
 
     # func 5 : 테이블 restaurant_near_section 에 인접 section의 center 와 현재 음식점(restaurant) 까지의 이동 거리와 시간 입력
     def insert_data_to_restaurant_near_section(self):
-        self.connection.ping(True)
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan',
+                                          charset='utf8')
 
         cursor_select = self.connection.cursor()
 
@@ -198,3 +209,9 @@ class Dao :
                 cursor_insert.execute(sql_insert)
 
                 self.connection.commit()
+
+                cursor_insert.close()
+
+            cursor_select.close()
+            cursor_duplicate_check.close()
+            self.connection.close()
