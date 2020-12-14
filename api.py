@@ -9,7 +9,7 @@ from collections import OrderedDict
 
 class API:
 
-    connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan', charset='utf8')
+    connection = None
 
     # variable declaration
     # 실패 0, 성공 1
@@ -90,6 +90,8 @@ class API:
             self.days = 1
             self.startTime = 2059
             self.endTime = 1100
+
+        self.connection = pymysql.connect(host='0.0.0.0', port=3306, user='root', passwd='humanH34#@', db='tripplan', charset='utf8')
 
         # Section, Direction, Attraction, Restaurant
         self.SDAR = [[0, 0, 0, 0],  # firstDay
@@ -283,6 +285,8 @@ class API:
 
         if (isDirectionChanged):
             attractionNum += extraNum
+
+        self.connection.ping(True)
 
         cursor = self.connection.cursor()
 
@@ -490,6 +494,8 @@ class API:
 
     def selectRestaurant(self, today, idList, distanceList, index, farIndex, closeIndex): # farIndex, closeIndex 中 emptyIndex = -1
 
+        self.connection.ping(True)
+
         cursor = self.connection.cursor()
 
         far = distanceList[farIndex]
@@ -615,6 +621,8 @@ class API:
         for today in range(self.days):
             num = 1
             tourList = []
+
+            self.connection.ping(True)
 
             cursor = self.connection.cursor()
 

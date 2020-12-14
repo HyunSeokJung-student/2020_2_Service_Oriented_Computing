@@ -12,12 +12,16 @@ class Dao :
 
 
 
+
     # func 1 : 현재 테이블 tablename의 id 컬럼에 들어가 있는 값 중 가장 큰 id 값 반환
     def select_table_max_id(self, tablename):
+
+        self.connection.ping(True)
 
         cursor = self.connection.cursor()
 
         sql = "select MAX(id) from tripplan.{};".format(tablename)
+
         cursor.execute(sql)
 
         max_id = cursor.fetchone()[0]
@@ -33,6 +37,8 @@ class Dao :
     # func 2 : 테이블 tablename (attractions || restaurant) 에 row 1줄 추가
     def insert_data_to_table(self, tablename, name, addr, lat, lng, desc, section_id):
         current_id = self.select_table_max_id(tablename) + 1
+
+        self.connection.ping(True)
 
         cursor = self.connection.cursor()
 
@@ -55,6 +61,8 @@ class Dao :
 
     # func 4 : 테이블 attractions_near_section 에 인접 section의 center 와 현재 관광지(attraction) 까지의 이동 거리와 시간 입력
     def insert_data_to_attractions_near_section(self):
+        self.connection.ping(True)
+
         cursor_select = self.connection.cursor()
 
         sql_select = 'select att_ne.attraction_id, att_ne.attraction_section_id, att_ne.attraction_lat, att_ne.attraction_lng, att_ne.near_section_id, s.section_center_lat, s.section_center_lng ' \
@@ -123,6 +131,8 @@ class Dao :
 
     # func 5 : 테이블 restaurant_near_section 에 인접 section의 center 와 현재 음식점(restaurant) 까지의 이동 거리와 시간 입력
     def insert_data_to_restaurant_near_section(self):
+        self.connection.ping(True)
+
         cursor_select = self.connection.cursor()
 
         sql_select = 'select restaurant_ne.restaurant_id, restaurant_ne.restaurant_section_id, restaurant_ne.restaurant_lat, restaurant_ne.restaurant_lng, restaurant_ne.near_section_id, s.section_center_lat, s.section_center_lng ' \
