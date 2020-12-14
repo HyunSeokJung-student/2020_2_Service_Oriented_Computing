@@ -488,7 +488,9 @@ class API:
                 self.location[today][i].extend(list(cursor.fetchone()))
 
         cursor.close()
-        self.connection.close()
+
+        if self.connection.open:
+            self.connection.close()
 
 
     def selectRestaurant(self, today, idList, distanceList, index, farIndex, closeIndex): # farIndex, closeIndex 中 emptyIndex = -1
@@ -520,7 +522,10 @@ class API:
         distanceList.insert(index, list(sqlResult)[1])
 
         cursor.close()
-        self.connection.close()
+
+        if self.connection.open:
+            self.connection.close()
+
 
 
     def makeMoveInfo(self, today, index):
@@ -702,7 +707,10 @@ class API:
             }
             tripplan.append(tripplanDict)
 
-        self.connection.close()
+
+        if self.connection.open:
+            self.connection.close()
+
 
         return tripplan
 

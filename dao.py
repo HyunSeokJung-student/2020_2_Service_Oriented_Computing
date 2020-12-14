@@ -30,7 +30,10 @@ class Dao :
             max_id = 0
 
         cursor.close()
-        self.connection.close()
+
+        if self.connection.open:
+            self.connection.close()
+
 
         return max_id
 
@@ -50,7 +53,10 @@ class Dao :
         cursor.execute(sql)
 
         cursor.close()
-        self.connection.close()
+
+        if self.connection.open:
+            self.connection.close()
+
 
 
     # func 3 : 테이블 tablename (attractions || restaurant) 에 list로 받은 data 전부 추가
@@ -136,8 +142,9 @@ class Dao :
 
             cursor_duplicate_check.close()
             cursor_select.close()
-            self.connection.close()
 
+            if self.connection.open:
+                self.connection.close()
 
     # func 5 : 테이블 restaurant_near_section 에 인접 section의 center 와 현재 음식점(restaurant) 까지의 이동 거리와 시간 입력
     def insert_data_to_restaurant_near_section(self):
@@ -214,4 +221,6 @@ class Dao :
 
             cursor_select.close()
             cursor_duplicate_check.close()
-            self.connection.close()
+
+            if self.connection.open:
+                self.connection.close()
